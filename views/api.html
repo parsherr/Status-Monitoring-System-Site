@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation - Status Dashboard</title>
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    .api-section {
+      margin-bottom: 2rem;
+    }
+    
+    .endpoint {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    
+    .endpoint h3 {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .method {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: white;
+      background-color: #4CAF50;
+      margin-right: 1rem;
+    }
+    
+    .method.get {
+      background-color: #2196F3;
+    }
+    
+    .method.post {
+      background-color: #4CAF50;
+    }
+    
+    .method.put {
+      background-color: #FF9800;
+    }
+    
+    .method.delete {
+      background-color: #F44336;
+    }
+    
+    .url-path {
+      font-family: monospace;
+      font-size: 1rem;
+    }
+    
+    .description {
+      margin-bottom: 1rem;
+    }
+    
+    .params-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .params-list {
+      list-style: none;
+      padding-left: 1rem;
+    }
+    
+    .params-list li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .param-name {
+      font-family: monospace;
+      font-weight: 600;
+    }
+    
+    .response-example {
+      background-color: #f5f5f5;
+      padding: 1rem;
+      border-radius: 4px;
+      overflow-x: auto;
+      font-family: monospace;
+      margin-top: 1rem;
+    }
+    
+    .auth-section {
+      background-color: #fffde7;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      border-left: 4px solid #fbc02d;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <h1>Status Dashboard</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/">Status</a></li>
+          <li><a href="#">History</a></li>
+          <li><a href="/api-docs" class="active">API</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2>API Documentation</h2>
+      
+      <div class="auth-section">
+        <h3>Authentication</h3>
+        <p>All API endpoints require an API key to be passed in the <code>X-API-Key</code> header.</p>
+        <p>Example: <code>X-API-Key: your_api_key_here</code></p>
+      </div>
+      
+      <div class="api-section">
+        <h3>Services</h3>
+        
+        <div class="endpoint">
+          <h3><span class="method get">GET</span> <span class="url-path">/api/services</span></h3>
+          <p class="description">Get all services</p>
+          <div class="response-example">
+            <pre>{
+  "status": "success",
+  "data": [
+    {
+      "id": "123e4567-e89b-12d3-a456-426614174000",
+      "name": "Main Website",
+      "url": "https://example.com",
+      "description": "Our main website",
+      "created_at": "2023-01-01T00:00:00.000Z"
+    },
+    ...
+  ]
+}</pre>
+          </div>
+        </div>
+        
+        <div class="endpoint">
+          <h3><span class="method get">GET</span> <span class="url-path">/api/services/:id</span></h3>
+          <p class="description">Get a specific service by ID</p>
+          <div class="params-title">Path Parameters:</div>
+          <ul class="params-list">
+            <li><span class="param-name">id</span> - Service ID</li>
+          </ul>
+          <div class="response-example">
+            <pre>{
+  "status": "success",
+  "data": {
+    "id": "123e4567-e89b-12d3-a456-426614174000",
+    "name": "Main Website",
+    "url": "https://example.com",
+    "description": "Our main website",
+    "created_at": "2023-01-01T00:00:00.000Z"
+  }
+}</pre>
+          </div>
+        </div>
+      </div>
+      
+      <div class="api-section">
+        <h3>Status</h3>
+        
+        <div class="endpoint">
+          <h3><span class="method get">GET</span> <span class="url-path">/api/status</span></h3>
+          <p class="description">Get current status of all services</p>
+          <div class="response-example">
+            <pre>{
+  "status": "success",
+  "data": [
+    {
+      "id": "123e4567-e89b-12d3-a456-426614174000",
+      "name": "Main Website",
+      "url": "https://example.com",
+      "description": "Our main website",
+      "status": "operational",
+      "status_code": 200,
+      "response_time": 150,
+      "last_checked": "2023-01-01T12:00:00.000Z"
+    },
+    ...
+  ]
+}</pre>
+          </div>
+        </div>
+        
+        <div class="endpoint">
+          <h3><span class="method get">GET</span> <span class="url-path">/api/services/:id/status</span></h3>
+          <p class="description">Get current status of a specific service</p>
+          <div class="params-title">Path Parameters:</div>
+          <ul class="params-list">
+            <li><span class="param-name">id</span> - Service ID</li>
+          </ul>
+          <div class="response-example">
+            <pre>{
+  "status": "success",
+  "data": {
+    "id": "123e4567-e89b-12d3-a456-426614174000",
+    "name": "Main Website",
+    "url": "https://example.com",
+    "description": "Our main website",
+    "status": "operational",
+    "status_code": 200,
+    "response_time": 150,
+    "last_checked": "2023-01-01T12:00:00.000Z"
+  }
+}</pre>
+          </div>
+        </div>
+      </div>
+      
+      <div class="api-section">
+        <h3>History</h3>
+        
+        <div class="endpoint">
+          <h3><span class="method get">GET</span> <span class="url-path">/api/history</span></h3>
+          <p class="description">Get history data for all services</p>
+          <div class="params-title">Query Parameters:</div>
+          <ul class="params-list">
+            <li><span class="param-name">days</span> - Number of days of history to retrieve (default: 45)</li>
+          </ul>
+          <div class="response-example">
+            <pre>{
+  "status": "success",
+  "data": [
+    {
+      "id": "123e4567-e89b-12d3-a456-426614174000",
+      "name": "Main Website",
+      "url": "https://example.com",
+      "description": "Our main website",
+      "history": [
+        {
+          "date": "2023-01-01",
+          "uptime_percentage": 99.8,
+          "status": "YELLOW",
+          "outage_periods": [{"start": "12:30:00", "end": "12:45:00"}],
+          "avg_response_time": 150
+        },
+        ...
+      ]
+    },
+    ...
+  ]
+}</pre>
+          </div>
+        </div>
+        
+        <div class="endpoint">
+          <h3><span class="method get">GET</span> <span class="url-path">/api/services/:id/history</span></h3>
+          <p class="description">Get history data for a specific service</p>
+          <div class="params-title">Path Parameters:</div>
+          <ul class="params-list">
+            <li><span class="param-name">id</span> - Service ID</li>
+          </ul>
+          <div class="params-title">Query Parameters:</div>
+          <ul class="params-list">
+            <li><span class="param-name">days</span> - Number of days of history to retrieve (default: 45)</li>
+          </ul>
+          <div class="response-example">
+            <pre>{
+  "status": "success",
+  "data": {
+    "id": "123e4567-e89b-12d3-a456-426614174000",
+    "name": "Main Website",
+    "url": "https://example.com",
+    "description": "Our main website",
+    "history": [
+      {
+        "date": "2023-01-01",
+        "uptime_percentage": 99.8,
+        "status": "YELLOW",
+        "outage_periods": [{"start": "12:30:00", "end": "12:45:00"}],
+        "formatted_outages": "12:30:00 - 12:45:00",
+        "outage_duration": {"hours": 0, "minutes": 15, "seconds": 0},
+        "avg_response_time": 150,
+        "total_checks": 288,
+        "failed_checks": 3
+      },
+      ...
+    ]
+  }
+}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Status Dashboard. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html> 
