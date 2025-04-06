@@ -1,4 +1,6 @@
 # Status Monitoring System
+![image](https://github.com/user-attachments/assets/ef57abde-30b9-4bc3-bdc3-dc4cbc1e1b98)
+
 
 A comprehensive status monitoring system for tracking and reporting the status of all services in your organization. This system is similar to status.discord.com, providing a dashboard to view the current and historical status of all services.
 
